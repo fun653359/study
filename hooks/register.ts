@@ -11,7 +11,11 @@ const IDLE_MS = 60 * 60 * 1000
 
 export const register: Register = on => {
   on('prompt.suggest', async ($, e, next) => {
-    const root = `${await $.env.get('HOME')}/study`
+    // The skill writes ~/study from a shell. Windows often leaves HOME unset, and Git Bash then takes ~
+    // from USERPROFILE, so the hook must look there too or it would never see a lesson in progress.
+    const home = (await $.env.get('HOME')) || (await $.env.get('USERPROFILE'))
+    if (!home) return next(e)
+    const root = `${home}/study`
     if (!(await $.fs.exists(root))) return next(e)
 
     const since = (await $.clock.now()) - IDLE_MS

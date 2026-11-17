@@ -1,1 +1,1 @@
-{ "name": "study", "version": "0.1.1", "description": "주제별 커리큘럼을 차시로 나눠 수업 → 문제 → 복습을 진행하고, 진도와 약점을 ~/study에 기록한다" }
+{ "name": "study", "version": "0.1.2", "description": "주제별 커리큘럼을 차시로 나눠 수업 → 문제 → 복습을 진행하고, 진도와 약점을 ~/study에 기록한다" }
